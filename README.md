@@ -59,7 +59,7 @@ The results from both codes are 0, hence there are no missing values found withi
 
 -- Exploratory Data Analysis (EDA) --
 
-Moving on to EDA, we would want to create new tables for our convenience. First would be 'NumberOfApps' which includes the count of apps belonging in respective genres. 
+Moving on to EDA, we would want to create new tables for our convenience. First would be 'NumberOfApps' which includes the count of apps belonging in respective genres. This is also helpful in finding out which genres of apps are highly populated, which our stakeholders would likely want to avoid as there is a great amount of competition in heavily-populated genres. 
 
 ```
 select prime_genre, count(*) as NumberOfApps
@@ -68,7 +68,7 @@ group by prime_genre
 order by NumberOfApps DESC
 ```
 
-Secondly, for an easier overview of app ratings, we create 'MinRating', 'MaxRating' and 'AvgRating'. 
+Secondly, for an easier overview of app ratings, we create the tables 'MinRating', 'MaxRating' and 'AvgRating'. 
 
 ```
 Select min(user_rating) as MinRating, max(user_rating) as MaxRating, avg(user_rating) as AvgRating
