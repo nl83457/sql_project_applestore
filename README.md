@@ -1,4 +1,4 @@
-# projects
+# SQL Project (AppleStore)
 
 -- Apple App Store Exploratory Data Analysis (using SQL) --
 
