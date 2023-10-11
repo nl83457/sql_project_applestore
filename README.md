@@ -68,7 +68,7 @@ group by prime_genre
 order by NumberOfApps DESC
 ```
 
-Secondly, for an easier overview of app ratings, we create the tables 'MinRating', 'MaxRating' and 'AvgRating'. 
+Secondly, for an easier overview of app ratings, we look at the minimum, maximum and average ratings of apps in the app store. 
 
 ```
 Select min(user_rating) as MinRating, max(user_rating) as MaxRating, avg(user_rating) as AvgRating
