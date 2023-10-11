@@ -2,10 +2,12 @@
 
 ## Apple App Store Exploratory Data Analysis (using SQL)
 
-In this project, we are going to conduct an exploratory data analysis on a dataset with data of Apple's App Store. This is done with the assumption that we are working with stakeholders interested in creating a new app, and wants to know what type of app to make so that it would be popular. As such, we are interested in exploring these categories:
+In this project, we are going to conduct an exploratory data analysis on a dataset with data of Apple's App Store. Key functions used in this project are COUNT, CASE, JOIN, UNION, RANK. 
+
+This is done with the assumption that we are working with stakeholders interested in creating a new app, and wants to know what type of app to make so that it would be popular. As such, we are interested in exploring these categories:
 
 1. Genre of apps that are popular/have the highest ratings
-2. Factors that might lead to the apps' popularity (e.g. price, supported languages, length of app description etc.)
+2. Other factors that might lead to the apps' popularity (e.g. price, supported languages, length of app description etc.)
 
 The project was conducted on SQLite Online (sqliteonline.com). As the website only permits a maximum upload size of 4MB per file, we would have to split the dataset 'appleStore_description' into 4 different parts, then combining the data using the UNION function as follows: 
 
