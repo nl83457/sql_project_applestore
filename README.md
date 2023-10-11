@@ -1,6 +1,6 @@
 # SQL Project (AppleStore)
 
--- Apple App Store Exploratory Data Analysis (using SQL) --
+## Apple App Store Exploratory Data Analysis (using SQL)
 
 In this project, we are going to conduct an exploratory data analysis on a dataset with data of Apple's App Store. This is done with the assumption that we are working with stakeholders interested in creating a new app, and wants to know what type of app to make so that it would be popular. As such, we are interested in exploring these categories:
 
@@ -27,7 +27,7 @@ union ALL
 SELECT * FROM appleStore_description4
 ```
 
--- Data Cleaning/Checking Validity of Data --
+## Data Cleaning/Checking Validity of Data
 
 Firstly, we use the COUNT function to get the number of distinct 'id' values in both tables, and match the results to check if there is any missing data. 
 
@@ -57,7 +57,7 @@ WHERE app_desc is NULL
 
 The results from both codes are 0, hence there are no missing values found within both datasets. 
 
--- Exploratory Data Analysis (EDA) --
+## Exploratory Data Analysis (EDA)
 
 Moving on to EDA, we would first want to find out which genres of apps are highly populated, which our stakeholders would likely want to avoid as there is a great amount of competition in heavily-populated genres. 
 
