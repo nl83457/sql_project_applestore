@@ -7,7 +7,7 @@ In this project, we are going to conduct an exploratory data analysis on a datas
 1. Genre of apps that are popular/have the highest ratings
 2. Factors that might lead to the apps' popularity (e.g. price, supported languages, length of app description etc.)
 
-The project was conducted on SQLite Online (sqliteonline.com). As the website only permits a maximum upload size of 4MB per file, we would have to split the dataset 'appleStore_description' into 4 different parts, then combining the data using the 'union' function as follows: 
+The project was conducted on SQLite Online (sqliteonline.com). As the website only permits a maximum upload size of 4MB per file, we would have to split the dataset 'appleStore_description' into 4 different parts, then combining the data using the UNION function as follows: 
 
 ```
 create table appleStore_description_combined AS
@@ -59,7 +59,7 @@ The results from both codes are 0, hence there are no missing values found withi
 
 -- Exploratory Data Analysis (EDA) --
 
-Moving on to EDA, we would want to create new tables for our convenience. First would be 'NumberOfApps' which includes the count of apps belonging in respective genres. This is also helpful in finding out which genres of apps are highly populated, which our stakeholders would likely want to avoid as there is a great amount of competition in heavily-populated genres. 
+Moving on to EDA, we would first want to find out which genres of apps are highly populated, which our stakeholders would likely want to avoid as there is a great amount of competition in heavily-populated genres. 
 
 ```
 select prime_genre, count(*) as NumberOfApps
@@ -75,7 +75,7 @@ Select min(user_rating) as MinRating, max(user_rating) as MaxRating, avg(user_ra
 from AppleStore
 ```
 
-Now we are ready to conduct data analysis on the datasets. One very likely factor leading to an app's popularity is whether the app is free or not. An app being free might lead to a greater number of downloads, but it might not be the case for its ratings. We check using the code below: 
+Next up, one very likely factor leading to an app's popularity is whether the app is free or not. An app being free might lead to a greater number of downloads, but it might not be the case for its ratings. We check using the code below: 
 
 ```
 select CASE
