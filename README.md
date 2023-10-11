@@ -29,7 +29,7 @@ SELECT * FROM appleStore_description4
 
 ## Data Cleaning/Checking Validity of Data
 
-Firstly, we use the COUNT function to get the number of distinct 'id' values in both tables, and match the results to check if there is any missing data. 
+Firstly, we use the COUNT function to get the number of distinct 'id' values in both tables, and match the results across both tables to check if there is any missing data. 
 
 ```
 SELECT COUNT(Distinct id) AS UniqueAppIDs
@@ -38,6 +38,7 @@ FROM AppleStore
 SELECT COUNT(Distinct id) AS UniqueAppIDs
 from appleStore_description_combined
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/9e12e5c3-9a27-4612-8074-fa1fdd3947f7)
 
 Based on the results, there is the same number of UniqueAppIDs in both tables (7197), hence there is no missing data. 
 
@@ -54,6 +55,7 @@ SELECT COUNT(*) AS MissingValues
 FROM appleStore_description_combined
 WHERE app_desc is NULL
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/9a580e1d-9923-473b-8624-91c4b1303e97)
 
 The results from both codes are 0, hence there are no missing values found within both datasets. 
 
@@ -67,6 +69,7 @@ from AppleStore
 group by prime_genre
 order by NumberOfApps DESC
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/a23a90ae-d58f-4ff8-8834-01521b496419)
 
 Secondly, for an easier overview of app ratings, we look at the minimum, maximum and average ratings of apps in the app store. 
 
@@ -74,8 +77,11 @@ Secondly, for an easier overview of app ratings, we look at the minimum, maximum
 Select min(user_rating) as MinRating, max(user_rating) as MaxRating, avg(user_rating) as AvgRating
 from AppleStore
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/e13a6435-0f02-49b5-95ca-e92537ef10c2)
 
-Next up, one very likely factor leading to an app's popularity is whether the app is free or not. An app being free might lead to a greater number of downloads, but it might not be the case for its ratings. We check using the code below: 
+Ideally, if we want to look for characteristics of popular apps, we would want to examine apps that have above average ratings (>3.52).
+
+Next up, one very likely factor leading to an app's popularity is whether the app is free or not. An app being free might lead to a greater number of downloads, but it might not be the case for its ratings. We check using the CASE function as shown below: 
 
 ```
 select CASE
@@ -86,10 +92,11 @@ select CASE
 from AppleStore
 group by App_Type
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/26cdc815-3914-42e7-8e7c-706109e66a8e)
 
 Based on the results obtained from the dataset, paid apps have a higher rating on average. This could possibly be due to paid apps being of higher quality, or customers being more attached to the paid apps hence being more inclined to give them a higher rating. 
 
-Next, we want to examine the ideal number of supported languages that an app should provide for it to bring higher ratings. We use three ranges for the number of supported languages (<10, between 10 to 30, >30) in this case. 
+Also, we might be interested in providing multiple language support for the potential app. We would then want to examine the ideal number of supported languages that an app should provide for it to bring higher ratings. We use three ranges for the number of supported languages (<10, between 10 to 30, >30) for this case. 
 
 ```
 select CASE
@@ -102,6 +109,7 @@ from AppleStore
 group by language_bucket
 order by Avg_Rating DESC
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/56366e54-c2ce-4ddb-b74d-6f28a99a39b3)
 
 From the results, apps that fall within the 10-30 languages range are more likely to receive higher ratings. 
 
@@ -114,10 +122,11 @@ group by prime_genre
 order by Avg_Rating ASC
 limit 10
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/d154a4be-463d-4f35-818e-b25b945ef844)
 
-Using this code above, we can find out the 10 app genres with the lowest average ratings. To find out the top 10 genres with the highest average ratings instead, we can change the order by command to descending order (DESC) instead. 
+Using this code above, we can find out the 10 app genres with the lowest average ratings. If we want to find out the top 10 genres with the highest average ratings instead, we can change the order by command to descending order (DESC) instead. 
 
-We would also want to know if providing a long description is helpful in making an app popular. Hence, we use the code below to find out if there is any correlation between description length and the average rating of apps. 
+We would also want to know if providing a long description is helpful in making an app popular. Hence, we use the code below to find out if there is any correlation between description length and the average rating of apps. The JOIN function will have to be used to examine data from both tables, AppleStore and appleStore_description_combined. 
 
 ```
 SELECT CASE
@@ -135,10 +144,11 @@ on a.id = b.id
 group by description_length_bucket
 order by Avg_Rating DESC
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/0aa472fb-4344-4ed4-9aee-d10f757c2853)
 
 We would then find out that the longer the description, the more likely the app is highly rated. 
 
-Lastly, we might want to find out the top rated app of each app genre, to gain a more specific insight on what kind of app is popular. 
+Lastly, we might want to find out the top rated app of each app genre, to gain specific insight on what kind of apps in particular are popular. We will be creating a new table for this purpose. 
 
 ```
 select prime_genre, track_name, user_rating
@@ -153,3 +163,4 @@ from (
 WHERE
 a.rank = 1
 ```
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/980afd99-6dc6-43b0-8e66-c2455d21f84b)
