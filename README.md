@@ -150,7 +150,7 @@ order by Avg_Rating DESC
 
 We would then find out that the longer the description, the more likely the app is highly rated. 
 
-Lastly, we might want to find out the top rated app of each app genre, to gain specific insight on what kind of apps in particular are popular. We will be creating a new table for this purpose. 
+Lastly, we might want to find out the top rated app of each app genre, to gain specific insight on what kind of apps in particular are popular, using the RANK() function across prime_genre and obtaining the names of apps with rank=1 in their respective genres. 
 
 ```
 select prime_genre, track_name, user_rating
