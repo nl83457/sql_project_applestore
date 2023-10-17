@@ -63,7 +63,7 @@ The results from both codes are 0, hence there are no missing values found withi
 
 ## Exploratory Data Analysis (EDA)
 
-Moving on to EDA, we would first want to find out which genres of apps are highly populated, which our stakeholders would likely want to avoid as there is a great amount of competition in heavily-populated genres. 
+Moving on to EDA, we would first want to find out which genres of apps are highly populated or less populated. Our stakeholders would likely want to avoid heavily-populated genres due to high competition. To find the least populated apps, modify the order by function from DESC to ASC. 
 
 ```
 select prime_genre, count(*) as NumberOfApps
@@ -71,7 +71,8 @@ from AppleStore
 group by prime_genre
 order by NumberOfApps DESC
 ```
-![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/a23a90ae-d58f-4ff8-8834-01521b496419)
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/a23a90ae-d58f-4ff8-8834-01521b496419) ![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/b3aca483-e11d-4b0d-b440-1d75f54d666a)
+
 
 Secondly, for an easier overview of app ratings, we look at the minimum, maximum and average ratings of apps in the app store. 
 
@@ -96,7 +97,7 @@ group by App_Type
 ```
 ![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/26cdc815-3914-42e7-8e7c-706109e66a8e)
 
-Based on the results obtained from the dataset, paid apps have a higher rating on average. This could possibly be due to paid apps being of higher quality, or customers being more attached to the paid apps hence being more inclined to give them a higher rating. 
+Based on the results obtained from the dataset, paid apps have a higher rating on average. This could possibly be due to paid apps being of higher quality, or customers being more attached to the paid apps hence being more inclined to give them a higher rating. Hence, the data suggests that our stakeholders need not worry about pricing their app should they feel the need to do so, as long as it is of good quality. 
 
 Also, we might be interested in providing multiple language support for the potential app. We would then want to examine the ideal number of supported languages that an app should provide for it to bring higher ratings. We use three ranges for the number of supported languages (<10, between 10 to 30, >30) for this case. 
 
@@ -115,7 +116,7 @@ order by Avg_Rating DESC
 
 From the results, apps that fall within the 10-30 languages range are more likely to receive higher ratings. 
 
-Our stakeholders would also likely be interested in knowing which genres of apps to avoid making. Therefore, we want to find out the genres of apps with the lowest average ratings. 
+Our stakeholders would also likely be interested in knowing which genres of apps to avoid making. Therefore, we want to find out the genres of apps with the lowest average ratings. If we want to find out the top 10 genres with the highest average ratings instead, we can change the order by command to descending order (DESC) instead. 
 
 ```
 select prime_genre, avg(user_rating) as Avg_Rating
@@ -124,9 +125,9 @@ group by prime_genre
 order by Avg_Rating ASC
 limit 10
 ```
-![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/d154a4be-463d-4f35-818e-b25b945ef844)
+![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/d154a4be-463d-4f35-818e-b25b945ef844) ![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/5c86dcb2-0bcf-48fd-9ccc-1be430e4d59f)
 
-Using this code above, we can find out the 10 app genres with the lowest average ratings. If we want to find out the top 10 genres with the highest average ratings instead, we can change the order by command to descending order (DESC) instead. 
+Comparing these results with the app population results, it might be preferable to suggest making an app in the **Business genre**, as it has the fourth highest average rating (3.745) while being the fourth least populated (57 out of 7197). 
 
 We would also want to know if providing a long description is helpful in making an app popular. Hence, we use the code below to find out if there is any correlation between description length and the average rating of apps. The JOIN function will have to be used to examine data from both tables, AppleStore and appleStore_description_combined. 
 
@@ -148,7 +149,7 @@ order by Avg_Rating DESC
 ```
 ![image](https://github.com/nl83457/sql_project_applestore/assets/143477919/0aa472fb-4344-4ed4-9aee-d10f757c2853)
 
-We would then find out that the longer the description, the more likely the app is highly rated. 
+The longer the description, the more likely the app is highly rated, hence we would propose that our stakeholders should provide **more detailed descriptions** for their app when it hits the market. 
 
 Lastly, we might want to find out the top rated app of each app genre, to gain specific insight on what kind of apps in particular are popular, using the RANK() function across prime_genre and obtaining the names of apps with rank=1 in their respective genres. 
 
